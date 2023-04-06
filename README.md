@@ -32,3 +32,7 @@ lancer dans différents container les produceur et les consumer
 
 producteur_tweet.py + producteur_last_tweet.py -> consumer_tweets.py
 producteur_banque.py -> consumer_banque.py
+
+
+
+pour voir le dashboard, lien dans "dashboard.txt"
