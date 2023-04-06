@@ -1,0 +1,12 @@
+Pandas
+torch
+Kafka-python
+Pymongo
+yahoo_fin
+pycoingecko
+snscrape
+tqdm
+numpy
+datetime
+pyspark
+transformers

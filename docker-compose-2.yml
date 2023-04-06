@@ -1,0 +1,67 @@
+
+
+version: "3.6"
+services:
+  jupyterlab:
+    image: andreper/jupyterlab:3.0.0-spark-3.0.0
+    container_name: jupyterlab
+    ports:
+      - 8888:8888
+      - 4040:4040
+    volumes:
+      - ./pak:/opt/workspace/ 
+      - ./data:/data   
+  spark-master:
+    image: andreper/spark-master:3.0.0
+    container_name: spark-master
+    ports:
+      - 8080:8080
+      - 7077:7077
+
+    volumes:
+      - ./pak:/opt/workspace/
+      - ./data:/data
+  spark-worker-1:
+    image: andreper/spark-worker:3.0.0
+    container_name: spark-worker-1
+    environment:
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=2g
+    ports:
+      - 8081:8081
+    volumes:
+      - ./pak:/opt/workspace
+    depends_on:
+      - spark-master
+  spark-worker-2:
+    image: andreper/spark-worker:3.0.0
+    container_name: spark-worker-2
+    environment:
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=2g
+    ports:
+      - 8082:8081
+    volumes:
+      - ./pak:/opt/workspace
+    depends_on:
+      - spark-master
+
+
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  
+  kafka:
+    image: docker.io/bitnami/kafka:3.3
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+   
