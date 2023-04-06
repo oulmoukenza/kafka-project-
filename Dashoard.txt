@@ -1,0 +1,3 @@
+Dashboard
+
+https://charts.mongodb.com/charts-project-0-nfldi/public/dashboards/642ebd8d-6b40-42ae-83aa-946d8b58ef0c
