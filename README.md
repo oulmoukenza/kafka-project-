@@ -1,15 +1,6 @@
 # archi_distrib
 Projet architecture distribuée
 
-
-équipe :
-
-Kenza
-Nabil
-Redha
-Rayan
-
-
 procedure lancement 
 
 Lancer le docker-compose: docker-compose up -d
